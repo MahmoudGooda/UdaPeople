@@ -1,0 +1,23 @@
+- name: Create Backend Directory
+  file:
+    path: /home/ubuntu/bakend
+    state: directory
+
+- name: Extract artifact.tar.gz to EC2 
+  unarchive:
+    src: artifact.tar.gz
+    dest: /home/ubuntu/bakend
+
+- name: "install npm"
+  become: true
+  apt:
+    name: npm
+    state: latest
+    update_cache: yes
+
+- name: Start the app
+  become: true
+  shell: |
+    cd /home/ubuntu/bakend/dist
+    pm2 stop default
+    pm2 start -f main.js
