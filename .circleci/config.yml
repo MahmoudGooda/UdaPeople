@@ -20,7 +20,6 @@ commands:
             sudo apt -y install software-properties-common
             sudo add-apt-repository --yes --update ppa:ansible/ansible
             sudo apt -y install ansible
-  
   install_nodejs:
     description: Install Node.js 13
     steps:
